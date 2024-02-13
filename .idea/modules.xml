@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../STCS-Base/STCS-Base.iml" filepath="$PROJECT_DIR$/../STCS-Base/STCS-Base.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../STCS - Kopie/STCS-Client/STCS-Client.iml" filepath="$PROJECT_DIR$/../STCS - Kopie/STCS-Client/STCS-Client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../STCS - Kopie/STCS-Server/STCS-Server.iml" filepath="$PROJECT_DIR$/../STCS - Kopie/STCS-Server/STCS-Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/STCS.iml" filepath="$PROJECT_DIR$/.idea/STCS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/STCS-Base/STCS-Base.iml" filepath="$PROJECT_DIR$/STCS-Base/STCS-Base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/STCS-Client/STCS-Client.iml" filepath="$PROJECT_DIR$/STCS-Client/STCS-Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/STCS-Server/STCS-Server.iml" filepath="$PROJECT_DIR$/STCS-Server/STCS-Server.iml" />
     </modules>
   </component>
 </project>
