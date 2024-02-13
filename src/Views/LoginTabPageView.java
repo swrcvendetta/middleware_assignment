@@ -15,6 +15,7 @@ public class LoginTabPageView extends ViewBase implements ITabPageView {
     public LoginTabPageView() {
         this.setVisible(false);
     }
+
     @Override
     public void onPropertyChanged(Object sender, PropertyChangedEventArgs e) {
         // TODO:

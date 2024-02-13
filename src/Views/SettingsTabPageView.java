@@ -10,6 +10,7 @@ public class SettingsTabPageView extends ViewBase implements ITabPageView {
     private final String tabPageName = "Settings";
     private final Icon tabPageIcon = null;
     private final String tabPageTip = "Settings";
+
     public SettingsTabPageView() {
         this.setVisible(false);
     }

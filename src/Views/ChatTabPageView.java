@@ -15,6 +15,7 @@ public class ChatTabPageView extends ViewBase implements ITabPageView {
     public ChatTabPageView() {
         this.setVisible(false);
     }
+
     @Override
     public void onPropertyChanged(Object sender, PropertyChangedEventArgs e) {
         // TODO:

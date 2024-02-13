@@ -1,7 +1,6 @@
 package Views;
 
 import Events.PropertyChangedEventArgs;
-import Interfaces.INotifyPropertyChanged;
 import Interfaces.ITabPageView;
 import ViewModels.MainWindowViewModel;
 
@@ -30,6 +29,7 @@ public class MainWindowView extends ViewBase {
         this.tabcontrol.addTab(chatPage.getTabPageName(), chatPage.getTabPageIcon(), chatPage.getTabPagePanel(), chatPage.getTabPageTip());
         this.tabcontrol.addTab(settingsPage.getTabPageName(), settingsPage.getTabPageIcon(), settingsPage.getTabPagePanel(), settingsPage.getTabPageTip());
     }
+
     @Override
     public void onPropertyChanged(Object sender, PropertyChangedEventArgs e) {
         System.out.println(sender.toString() + e.getPropertyName());

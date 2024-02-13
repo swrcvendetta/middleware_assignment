@@ -12,6 +12,7 @@ public class ClientSocket {
     private static OutputStream _out;
     private String _address;
     private int _port;
+
     public ClientSocket(String address, int port) {
         this._address = address;
         this._port = port;

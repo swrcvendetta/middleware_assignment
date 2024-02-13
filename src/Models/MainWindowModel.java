@@ -9,7 +9,7 @@ public class MainWindowModel extends ModelBase {
         super(viewModel, listener);
 
         // Debug
-        for(INotifyPropertyChanged l : listeners)
+        for (INotifyPropertyChanged l : listeners)
             l.onPropertyChanged(this, new PropertyChangedEventArgs("model"));
     }
 }

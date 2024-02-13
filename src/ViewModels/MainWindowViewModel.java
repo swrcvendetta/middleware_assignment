@@ -12,7 +12,7 @@ public class MainWindowViewModel extends ViewModelBase {
         this.model = new MainWindowModel(this, this);
 
         // Debug
-        for(INotifyPropertyChanged l : listeners)
+        for (INotifyPropertyChanged l : listeners)
             l.onPropertyChanged(this, new PropertyChangedEventArgs("view model"));
     }
 
