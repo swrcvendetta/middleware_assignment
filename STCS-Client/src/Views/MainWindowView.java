@@ -1,19 +1,17 @@
 package Views;
 
 import Events.PropertyChangedEventArgs;
-import Interfaces.ITabPageView;
 import ViewModels.MainWindowViewModel;
 
 import javax.swing.*;
 
 public class MainWindowView extends ViewBase {
-    public MainWindowViewModel model;
     private JPanel basePanel;
     private JTabbedPane tabPanel;
 
     public MainWindowView() {
         super();
-        this.model = new MainWindowViewModel(this);
+        this.viewModel = new MainWindowViewModel(this);
         this.setContentPane(this.basePanel);
         this.setTitle("MainWindowView");
         this.setSize(600, 400);
@@ -21,13 +19,15 @@ public class MainWindowView extends ViewBase {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
-        ITabPageView loginPage = new LoginTabPageView();
-        ITabPageView chatPage = new ChatTabPageView();
-        ITabPageView settingsPage = new SettingsTabPageView();
+        // Make settings-tab first, so we can use information on settings with our login-tab
+        SettingsTabPageView settingsPage = new SettingsTabPageView();
+        LoginTabPageView loginPage = new LoginTabPageView(settingsPage.getViewModel().getModel());
 
         this.tabPanel.addTab(loginPage.getTabPageName(), loginPage.getTabPageIcon(), loginPage.getTabPagePanel(), loginPage.getTabPageTip());
-        this.tabPanel.addTab(chatPage.getTabPageName(), chatPage.getTabPageIcon(), chatPage.getTabPagePanel(), chatPage.getTabPageTip());
         this.tabPanel.addTab(settingsPage.getTabPageName(), settingsPage.getTabPageIcon(), settingsPage.getTabPagePanel(), settingsPage.getTabPageTip());
+
+        // ITabPageView chatPage = new ChatTabPageView();
+        // this.tabPanel.addTab(chatPage.getTabPageName(), chatPage.getTabPageIcon(), chatPage.getTabPagePanel(), chatPage.getTabPageTip());
     }
 
     @Override

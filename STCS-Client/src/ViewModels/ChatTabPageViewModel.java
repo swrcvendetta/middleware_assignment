@@ -2,13 +2,12 @@ package ViewModels;
 
 import Events.PropertyChangedEventArgs;
 import Interfaces.INotifyPropertyChanged;
-import Models.MainWindowModel;
+import Models.ChatTabPageModel;
 
-public class MainWindowViewModel extends ViewModelBase {
-
-    public MainWindowViewModel(INotifyPropertyChanged listener) {
+public class ChatTabPageViewModel extends ViewModelBase {
+    public ChatTabPageViewModel(INotifyPropertyChanged listener) {
         super(listener);
-        this.model = new MainWindowModel(this, this);
+        this.model = new ChatTabPageModel(this, this);
 
         // Debug
         for (INotifyPropertyChanged l : listeners)
@@ -17,6 +16,6 @@ public class MainWindowViewModel extends ViewModelBase {
 
     @Override
     public void onPropertyChanged(Object sender, PropertyChangedEventArgs e) {
-        System.out.println(sender.toString() + e.getPropertyName());
+
     }
 }

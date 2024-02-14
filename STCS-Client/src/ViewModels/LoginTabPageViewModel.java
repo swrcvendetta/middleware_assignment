@@ -2,13 +2,12 @@ package ViewModels;
 
 import Events.PropertyChangedEventArgs;
 import Interfaces.INotifyPropertyChanged;
-import Models.MainWindowModel;
+import Models.LoginTabPageModel;
 
-public class MainWindowViewModel extends ViewModelBase {
-
-    public MainWindowViewModel(INotifyPropertyChanged listener) {
+public class LoginTabPageViewModel extends ViewModelBase{
+    public LoginTabPageViewModel(INotifyPropertyChanged listener) {
         super(listener);
-        this.model = new MainWindowModel(this, this);
+        this.model = new LoginTabPageModel(this, this);
 
         // Debug
         for (INotifyPropertyChanged l : listeners)

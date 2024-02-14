@@ -4,8 +4,8 @@ import Events.PropertyChangedEventArgs;
 import Interfaces.INotifyPropertyChanged;
 import ViewModels.ViewModelBase;
 
-public class MainWindowModel extends ModelBase {
-    public MainWindowModel(ViewModelBase viewModel, INotifyPropertyChanged listener) {
+public class ChatTabPageModel extends ModelBase{
+    public ChatTabPageModel(ViewModelBase viewModel, INotifyPropertyChanged listener) {
         super(viewModel, listener);
 
         // Debug

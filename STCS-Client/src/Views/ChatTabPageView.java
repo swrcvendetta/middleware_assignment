@@ -2,6 +2,7 @@ package Views;
 
 import Events.PropertyChangedEventArgs;
 import Interfaces.ITabPageView;
+import ViewModels.ChatTabPageViewModel;
 
 import javax.swing.*;
 
@@ -14,6 +15,7 @@ public class ChatTabPageView extends ViewBase implements ITabPageView {
 
     public ChatTabPageView() {
         this.setVisible(false);
+        this.viewModel = new ChatTabPageViewModel(this);
     }
 
     @Override
