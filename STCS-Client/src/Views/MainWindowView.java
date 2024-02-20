@@ -1,7 +1,11 @@
 package Views;
 
+import Controller.LoginController;
+import Controller.SettingsController;
 import Events.PropertyChangedEventArgs;
-import ViewModels.MainWindowViewModel;
+import Events.ValidationChangedEventArgs;
+import Models.LoginModel;
+import Models.SettingsModel;
 
 import javax.swing.*;
 
@@ -11,7 +15,7 @@ public class MainWindowView extends ViewBase {
 
     public MainWindowView() {
         super();
-        this.viewModel = new MainWindowViewModel(this);
+        //this.viewModel = new MainWindowViewModel(this);
         this.setContentPane(this.basePanel);
         this.setTitle("MainWindowView");
         this.setSize(600, 400);
@@ -20,18 +24,36 @@ public class MainWindowView extends ViewBase {
         this.setLocationRelativeTo(null);
 
         // Make settings-tab first, so we can use information on settings with our login-tab
-        SettingsTabPageView settingsPage = new SettingsTabPageView();
-        LoginTabPageView loginPage = new LoginTabPageView(settingsPage.getViewModel().getModel());
+        SettingsModel settingsModel = new SettingsModel();
+        SettingsController settingsController = new SettingsController(settingsModel);
+        SettingsTabPageView settingsPage = new SettingsTabPageView(settingsController);
+        LoginModel loginModel = new LoginModel();
+        LoginController loginController = new LoginController(loginModel, settingsModel);
+        LoginTabPageView loginPage = new LoginTabPageView(loginController);
+        settingsModel.subscribe(settingsPage);
+        //settingsModel.subscribe(loginPage);
+        loginModel.subscribe(loginPage);
+        loginModel.subscribe(this);
 
         this.tabPanel.addTab(loginPage.getTabPageName(), loginPage.getTabPageIcon(), loginPage.getTabPagePanel(), loginPage.getTabPageTip());
         this.tabPanel.addTab(settingsPage.getTabPageName(), settingsPage.getTabPageIcon(), settingsPage.getTabPagePanel(), settingsPage.getTabPageTip());
-
-        // ITabPageView chatPage = new ChatTabPageView();
-        // this.tabPanel.addTab(chatPage.getTabPageName(), chatPage.getTabPageIcon(), chatPage.getTabPagePanel(), chatPage.getTabPageTip());
     }
 
     @Override
     public void onPropertyChanged(Object sender, PropertyChangedEventArgs e) {
-        System.out.println(sender.toString() + e.getPropertyName());
+        switch (e.getPropertyName()) {
+            case "connected":
+                this.tabPanel.removeTabAt(0);
+                ChatTabPageView chatPage = new ChatTabPageView();
+                this.tabPanel.insertTab(chatPage.getTabPageName(), chatPage.getTabPageIcon(), chatPage.getTabPagePanel(), chatPage.getTabPageTip(), 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onValidationChanged(Object sender, ValidationChangedEventArgs e) {
+
     }
 }

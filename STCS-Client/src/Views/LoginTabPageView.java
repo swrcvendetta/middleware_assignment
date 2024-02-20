@@ -1,11 +1,16 @@
 package Views;
 
+import Controller.LoginController;
+import Controller.SettingsController;
 import Events.PropertyChangedEventArgs;
+import Events.ValidationChangedEventArgs;
+import Interfaces.INotifyPropertyChanged;
+import Interfaces.INotifyValidationChanged;
 import Interfaces.ITabPageView;
-import Models.ModelBase;
-import ViewModels.LoginTabPageViewModel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoginTabPageView extends ViewBase implements ITabPageView {
     private JPanel basePanel;
@@ -13,27 +18,46 @@ public class LoginTabPageView extends ViewBase implements ITabPageView {
     private JButton btn_login;
     private JPanel pnl_form;
     private JLabel lbl_loginStatus;
+    private JLabel lbl_username;
     private final String tabPageName = "Login";
     private final Icon tabPageIcon = null;
     private final String tabPageTip = "Login";
 
-    private ModelBase settings;
+    private LoginController loginController;
 
-    public LoginTabPageView() {
+    public LoginTabPageView(LoginController controller) {
         this.setVisible(false);
-        this.viewModel = new LoginTabPageViewModel(this);
-    }
-
-    public LoginTabPageView(ModelBase model) {
-        this.setVisible(false);
-        this.settings = model;
-        this.viewModel = new LoginTabPageViewModel(this);
+        this.loginController = controller;
+        this.loginController.subscribe(this);
+        INotifyValidationChanged sender = this;
+        this.btn_login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginController.login(sender, txtField_username.getText());
+            }
+        });
     }
 
     @Override
     public void onPropertyChanged(Object sender, PropertyChangedEventArgs e) {
-        // TODO:
-        System.out.println(sender.toString() + e.getPropertyName());
+        switch (e.getPropertyName()) {
+            case "username":
+                String username = ((String)e.getPropertyValue());
+                this.txtField_username.setText(username);
+                break;
+            case "connected":
+                if((boolean)e.getPropertyValue()) {
+                    // connected, can close this tab + open chat-tab
+                    System.out.println("logged in");
+                }
+                else {
+                    // popup-error no connection or something
+                    System.out.println("couldn't connect to server");
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -54,5 +78,13 @@ public class LoginTabPageView extends ViewBase implements ITabPageView {
     @Override
     public String getTabPageTip() {
         return this.tabPageTip;
+    }
+
+    @Override
+    public void onValidationChanged(Object sender, ValidationChangedEventArgs e) {
+        if(e.isValid())
+            this.lbl_loginStatus.setText("");
+        else
+            this.lbl_loginStatus.setText(e.getValidationMessage());
     }
 }

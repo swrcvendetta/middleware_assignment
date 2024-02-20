@@ -1,8 +1,8 @@
 package Views;
 
 import Events.PropertyChangedEventArgs;
+import Events.ValidationChangedEventArgs;
 import Interfaces.ITabPageView;
-import ViewModels.ChatTabPageViewModel;
 
 import javax.swing.*;
 
@@ -15,7 +15,7 @@ public class ChatTabPageView extends ViewBase implements ITabPageView {
 
     public ChatTabPageView() {
         this.setVisible(false);
-        this.viewModel = new ChatTabPageViewModel(this);
+        //this.viewModel = new ChatTabPageViewModel(this);
     }
 
     @Override
@@ -42,5 +42,10 @@ public class ChatTabPageView extends ViewBase implements ITabPageView {
     @Override
     public String getTabPageTip() {
         return this.tabPageTip;
+    }
+
+    @Override
+    public void onValidationChanged(Object sender, ValidationChangedEventArgs e) {
+
     }
 }

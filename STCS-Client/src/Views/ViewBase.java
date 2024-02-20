@@ -1,19 +1,14 @@
 package Views;
 
+import Controller.ControllerBase;
 import Interfaces.INotifyPropertyChanged;
-import ViewModels.ViewModelBase;
+import Interfaces.INotifyValidationChanged;
 
 import javax.swing.*;
+import java.util.List;
 
-public abstract class ViewBase extends JFrame implements INotifyPropertyChanged {
-    protected ViewModelBase viewModel;
+public abstract class ViewBase extends JFrame implements INotifyPropertyChanged, INotifyValidationChanged {
     public ViewBase() {
         this.setVisible(true);
-    }
-    public ViewBase(ViewModelBase viewModel) {
-        this.viewModel = viewModel;
-    }
-    public ViewModelBase getViewModel() {
-        return this.viewModel;
     }
 }

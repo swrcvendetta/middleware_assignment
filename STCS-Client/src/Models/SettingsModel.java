@@ -2,15 +2,19 @@ package Models;
 
 import Events.PropertyChangedEventArgs;
 import Interfaces.INotifyPropertyChanged;
-import ViewModels.ViewModelBase;
 
-public class SettingsTabPageModel extends ModelBase{
+public class SettingsModel extends ModelBase {
     private String address;
     private int port;
-    public SettingsTabPageModel(ViewModelBase viewModel, INotifyPropertyChanged listener) {
-        super(viewModel, listener);
+    public SettingsModel() {
         this.setAddress("localhost");
         this.setPort(1337);
+    }
+    @Override
+    public void subscribe(INotifyPropertyChanged listener) {
+        this.listeners.add(listener);
+        listener.onPropertyChanged(this, new PropertyChangedEventArgs("address", address));
+        listener.onPropertyChanged(this, new PropertyChangedEventArgs("port", port));
     }
     public void setAddress(String address) {
         this.address = address;
@@ -27,5 +31,8 @@ public class SettingsTabPageModel extends ModelBase{
     }
     public int getPort() {
         return this.port;
+    }
+    public boolean login(String address, int port) {
+        return false;
     }
 }
