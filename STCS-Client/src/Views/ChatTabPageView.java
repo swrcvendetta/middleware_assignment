@@ -11,7 +11,10 @@ public class ChatTabPageView extends ViewBase implements ITabPageView {
     private final Icon tabPageIcon = null;
     private final String tabPageTip = "Chats";
     private JPanel basePanel;
-    private JRadioButton radioButton1;
+    private JButton btn_sendMsg;
+    private JTextField txtField_msg;
+    private JPanel pnl_msg;
+    private JScrollPane pnlScroll_messages;
 
     public ChatTabPageView() {
         this.setVisible(false);

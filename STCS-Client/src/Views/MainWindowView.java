@@ -46,6 +46,7 @@ public class MainWindowView extends ViewBase {
                 this.tabPanel.removeTabAt(0);
                 ChatTabPageView chatPage = new ChatTabPageView();
                 this.tabPanel.insertTab(chatPage.getTabPageName(), chatPage.getTabPageIcon(), chatPage.getTabPagePanel(), chatPage.getTabPageTip(), 0);
+                this.tabPanel.setSelectedIndex(0);
                 break;
             default:
                 break;
