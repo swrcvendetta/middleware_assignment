@@ -1,12 +1,11 @@
-package Views;
+package Views.TabPages;
 
 import Controller.LoginController;
-import Controller.SettingsController;
 import Events.PropertyChangedEventArgs;
 import Events.ValidationChangedEventArgs;
-import Interfaces.INotifyPropertyChanged;
 import Interfaces.INotifyValidationChanged;
 import Interfaces.ITabPageView;
+import Views.ViewBase;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -48,7 +47,7 @@ public class LoginTabPageView extends ViewBase implements ITabPageView {
             case "connected":
                 if((boolean)e.getPropertyValue()) {
                     // connected, can close this tab + open chat-tab
-                    System.out.println("logged in");
+                    System.out.println("logged in as: " + this.txtField_username.getText());
                 }
                 else {
                     // popup-error no connection or something
@@ -86,5 +85,8 @@ public class LoginTabPageView extends ViewBase implements ITabPageView {
             this.lbl_loginStatus.setText("");
         else
             this.lbl_loginStatus.setText(e.getValidationMessage());
+    }
+    public String getUsername() {
+        return this.txtField_username.getText();
     }
 }
