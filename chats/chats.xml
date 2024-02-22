@@ -40,4 +40,59 @@
         <message>chatter has left the chat.</message>
         <timestamp>2024-02-22 17:16:49.429</timestamp>
     </message-object>
+    <message-object>
+        <user>johannes</user>
+        <message>null</message>
+        <timestamp>2024-02-22 17:59:40.551</timestamp>
+    </message-object>
+    <message-object>
+        <user>SERVER</user>
+        <message>johannes has entered the chat.</message>
+        <timestamp>2024-02-22 17:59:40.633</timestamp>
+    </message-object>
+    <message-object>
+        <user>stinker</user>
+        <message>null</message>
+        <timestamp>2024-02-22 17:59:41.991</timestamp>
+    </message-object>
+    <message-object>
+        <user>SERVER</user>
+        <message>stinker has entered the chat.</message>
+        <timestamp>2024-02-22 17:59:42.008</timestamp>
+    </message-object>
+    <message-object>
+        <user>johannes</user>
+        <message>na du nice guy</message>
+        <timestamp>2024-02-22 17:59:49.314</timestamp>
+    </message-object>
+    <message-object>
+        <user>stinker</user>
+        <message>siegreich</message>
+        <timestamp>2024-02-22 17:59:53.579</timestamp>
+    </message-object>
+    <message-object>
+        <user>SERVER</user>
+        <message>johannes has left the chat.</message>
+        <timestamp>2024-02-22 18:00:07.822</timestamp>
+    </message-object>
+    <message-object>
+        <user>stinker</user>
+        <message>spast</message>
+        <timestamp>2024-02-22 18:00:14.389</timestamp>
+    </message-object>
+    <message-object>
+        <user>SERVER</user>
+        <message>stinker has left the chat.</message>
+        <timestamp>2024-02-22 18:00:16.341</timestamp>
+    </message-object>
+    <message-object>
+        <user>johannes</user>
+        <message>null</message>
+        <timestamp>2024-02-22 18:00:21.768</timestamp>
+    </message-object>
+    <message-object>
+        <user>SERVER</user>
+        <message>johannes has entered the chat.</message>
+        <timestamp>2024-02-22 18:00:21.864</timestamp>
+    </message-object>
 </chatlog>

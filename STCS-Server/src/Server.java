@@ -40,6 +40,7 @@ public class Server {
 
         // Read messages
         MessageParser msgParser = new MessageParser();
+        new File(chatsDirectory).mkdir();
         File chats = new File(chatsDirectory + chatsFile);
         File validation = new File(chatsDirectory + chatsValidationFile);
         if(!validation.exists()) {
