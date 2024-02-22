@@ -86,8 +86,10 @@ public class ChatTabPageView extends ViewBase implements ITabPageView {
 
     @Override
     public void onValidationChanged(Object sender, ValidationChangedEventArgs e) {
-        if(e.isValid())
+        if (e.isValid()) {
             this.lbl_invalidMsg.setText("");
+            this.txtField_msg.setText("");
+        }
         else
             this.lbl_invalidMsg.setText(e.getValidationMessage());
     }

@@ -3,7 +3,6 @@ package Views.Controls;
 import Primitives.MessageRecord;
 
 import javax.swing.*;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 public class MessageControl extends ControlBase {
