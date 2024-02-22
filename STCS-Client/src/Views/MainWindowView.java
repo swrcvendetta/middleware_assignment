@@ -1,17 +1,25 @@
 package Views;
 
+import Controller.ChatController;
 import Controller.LoginController;
 import Controller.SettingsController;
 import Events.PropertyChangedEventArgs;
 import Events.ValidationChangedEventArgs;
+import Models.ChatModel;
 import Models.LoginModel;
 import Models.SettingsModel;
+import Views.TabPages.ChatTabPageView;
+import Views.TabPages.LoginTabPageView;
+import Views.TabPages.SettingsTabPageView;
 
 import javax.swing.*;
 
 public class MainWindowView extends ViewBase {
     private JPanel basePanel;
     private JTabbedPane tabPanel;
+    private SettingsTabPageView settingsPage;
+    private LoginTabPageView loginPage;
+    private ChatTabPageView chatPage;
 
     public MainWindowView() {
         super();
@@ -26,10 +34,10 @@ public class MainWindowView extends ViewBase {
         // Make settings-tab first, so we can use information on settings with our login-tab
         SettingsModel settingsModel = new SettingsModel();
         SettingsController settingsController = new SettingsController(settingsModel);
-        SettingsTabPageView settingsPage = new SettingsTabPageView(settingsController);
+        this.settingsPage = new SettingsTabPageView(settingsController);
         LoginModel loginModel = new LoginModel();
         LoginController loginController = new LoginController(loginModel, settingsModel);
-        LoginTabPageView loginPage = new LoginTabPageView(loginController);
+        this.loginPage = new LoginTabPageView(loginController);
         settingsModel.subscribe(settingsPage);
         //settingsModel.subscribe(loginPage);
         loginModel.subscribe(loginPage);
@@ -43,8 +51,12 @@ public class MainWindowView extends ViewBase {
     public void onPropertyChanged(Object sender, PropertyChangedEventArgs e) {
         switch (e.getPropertyName()) {
             case "connected":
+                String user = this.loginPage.getUsername();
                 this.tabPanel.removeTabAt(0);
-                ChatTabPageView chatPage = new ChatTabPageView();
+                ChatModel chatModel = new ChatModel();
+                ChatController chatController = new ChatController(chatModel);
+                this.chatPage = new ChatTabPageView(chatController, user);
+                chatModel.subscribe(chatPage);
                 this.tabPanel.insertTab(chatPage.getTabPageName(), chatPage.getTabPageIcon(), chatPage.getTabPagePanel(), chatPage.getTabPageTip(), 0);
                 this.tabPanel.setSelectedIndex(0);
                 break;

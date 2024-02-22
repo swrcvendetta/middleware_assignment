@@ -1,10 +1,11 @@
-package Views;
+package Views.TabPages;
 
 import Controller.SettingsController;
 import Events.PropertyChangedEventArgs;
 import Events.ValidationChangedEventArgs;
 import Interfaces.INotifyValidationChanged;
 import Interfaces.ITabPageView;
+import Views.ViewBase;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
