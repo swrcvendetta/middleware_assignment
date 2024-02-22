@@ -21,7 +21,7 @@ public class LoginController extends ControllerBase {
     }
     private boolean validateUsername(String username) {
         // some validation-rules for port
-        if(username.length() < 5)
+        if(username.length() < 5 || username.equals("SERVER"))
             return false;
         return true;
     }

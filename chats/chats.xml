@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<chatlog>
+    <message-object>
+        <user>chatter</user>
+        <message>null</message>
+        <timestamp>2024-02-22 17:16:38.098</timestamp>
+    </message-object>
+    <message-object>
+        <user>SERVER</user>
+        <message>chatter has entered the chat.</message>
+        <timestamp>2024-02-22 17:16:38.248</timestamp>
+    </message-object>
+    <message-object>
+        <user>chatter</user>
+        <message>tester</message>
+        <timestamp>2024-02-22 17:16:40.274</timestamp>
+    </message-object>
+    <message-object>
+        <user>SERVER</user>
+        <message>chatter has left the chat.</message>
+        <timestamp>2024-02-22 17:16:41.692</timestamp>
+    </message-object>
+    <message-object>
+        <user>chatter</user>
+        <message>null</message>
+        <timestamp>2024-02-22 17:16:44.091</timestamp>
+    </message-object>
+    <message-object>
+        <user>SERVER</user>
+        <message>chatter has entered the chat.</message>
+        <timestamp>2024-02-22 17:16:44.121</timestamp>
+    </message-object>
+    <message-object>
+        <user>chatter</user>
+        <message>noice</message>
+        <timestamp>2024-02-22 17:16:46.820</timestamp>
+    </message-object>
+    <message-object>
+        <user>SERVER</user>
+        <message>chatter has left the chat.</message>
+        <timestamp>2024-02-22 17:16:49.429</timestamp>
+    </message-object>
+</chatlog>
