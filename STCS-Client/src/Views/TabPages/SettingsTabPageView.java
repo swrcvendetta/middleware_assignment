@@ -77,11 +77,16 @@ public class SettingsTabPageView extends ViewBase implements ITabPageView {
     public String getTabPageTip() {
         return this.tabPageTip;
     }
-    public String getIP() {
-        return null;
+    public String getAddress() {
+        return this.txtField_address.getText();
     }
     public int getPort() {
-        return -1;
+        try {
+            int port = Integer.valueOf(this.txtField_port.getText());
+            return port;
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
     @Override

@@ -3,6 +3,9 @@ package Models;
 import Events.PropertyChangedEventArgs;
 import Interfaces.INotifyPropertyChanged;
 
+import java.io.IOException;
+import java.net.Socket;
+
 public class LoginModel extends ModelBase {
     private String username;
     public LoginModel() {
@@ -22,7 +25,13 @@ public class LoginModel extends ModelBase {
         return username;
     }
     public void login(String address, int port) {
+        Socket socket;
+        try {
+            socket = new Socket(address, port);
+        } catch (IOException e) {
+            socket = null;
+        }
         for (INotifyPropertyChanged l : listeners)
-            l.onPropertyChanged(this, new PropertyChangedEventArgs("connected", true));
+            l.onPropertyChanged(this, new PropertyChangedEventArgs("connected", socket));
     }
 }

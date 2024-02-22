@@ -45,13 +45,14 @@ public class LoginTabPageView extends ViewBase implements ITabPageView {
                 this.txtField_username.setText(username);
                 break;
             case "connected":
-                if((boolean)e.getPropertyValue()) {
+                if(e.getPropertyValue() != null) {
                     // connected, can close this tab + open chat-tab
                     System.out.println("logged in as: " + this.txtField_username.getText());
                 }
                 else {
                     // popup-error no connection or something
                     System.out.println("couldn't connect to server");
+                    this.lbl_loginStatus.setText("Connection failed...");
                 }
                 break;
             default:

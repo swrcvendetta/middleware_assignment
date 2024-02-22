@@ -13,6 +13,7 @@ import Views.TabPages.LoginTabPageView;
 import Views.TabPages.SettingsTabPageView;
 
 import javax.swing.*;
+import java.net.Socket;
 
 public class MainWindowView extends ViewBase {
     private JPanel basePanel;
@@ -51,14 +52,17 @@ public class MainWindowView extends ViewBase {
     public void onPropertyChanged(Object sender, PropertyChangedEventArgs e) {
         switch (e.getPropertyName()) {
             case "connected":
-                String user = this.loginPage.getUsername();
-                this.tabPanel.removeTabAt(0);
-                ChatModel chatModel = new ChatModel();
-                ChatController chatController = new ChatController(chatModel);
-                this.chatPage = new ChatTabPageView(chatController, user);
-                chatModel.subscribe(chatPage);
-                this.tabPanel.insertTab(chatPage.getTabPageName(), chatPage.getTabPageIcon(), chatPage.getTabPagePanel(), chatPage.getTabPageTip(), 0);
-                this.tabPanel.setSelectedIndex(0);
+                if(e.getPropertyValue() != null) {
+                    Socket socket = (Socket) (e.getPropertyValue());
+                    String user = this.loginPage.getUsername();
+                    this.tabPanel.removeTabAt(0);
+                    ChatModel chatModel = new ChatModel(user, socket);
+                    ChatController chatController = new ChatController(chatModel);
+                    this.chatPage = new ChatTabPageView(chatController, user);
+                    chatModel.subscribe(chatPage);
+                    this.tabPanel.insertTab(chatPage.getTabPageName(), chatPage.getTabPageIcon(), chatPage.getTabPagePanel(), chatPage.getTabPageTip(), 0);
+                    this.tabPanel.setSelectedIndex(0);
+                }
                 break;
             default:
                 break;

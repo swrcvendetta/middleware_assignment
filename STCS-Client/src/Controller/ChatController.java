@@ -3,7 +3,6 @@ package Controller;
 import Events.ValidationChangedEventArgs;
 import Interfaces.INotifyValidationChanged;
 import Models.ChatModel;
-import Models.SettingsModel;
 import Primitives.MessageRecord;
 
 import java.sql.Timestamp;
@@ -12,10 +11,11 @@ public class ChatController extends ControllerBase {
     private ChatModel chatModel;
     public ChatController(ChatModel chatModel) {
         this.chatModel = chatModel;
+        this.chatModel.listenForMessage();
     }
     private boolean validateMessage(String message) {
         // some validation-rules for port
-        if(message.isEmpty() || message.length() > 200)
+        if(message.isEmpty() || message.length() > 200 || message.equals("SERVER"))
             return false;
         return true;
     }
