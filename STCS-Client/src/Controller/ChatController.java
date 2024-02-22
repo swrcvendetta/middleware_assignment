@@ -13,25 +13,19 @@ public class ChatController extends ControllerBase {
         this.chatModel = chatModel;
         this.chatModel.listenForMessage();
     }
-    private boolean validateMessage(String message) {
+    private String validateMessage(String message) {
         // some validation-rules for port
-        if(message.isEmpty() || message.length() > 200 || message.equals("SERVER"))
-            return false;
-        return true;
-    }
-    private String getMessageValidationMessage(String message) {
-        if(validateMessage(message)) {
-            return null;
-        }
-        else {
+        if(message.isEmpty())
             return "Message can not be empty.";
-        }
+        if(message.length() > 200)
+            return "Message can not contain more than 200 characters.";
+        return null;
     }
     public void sendMessage(INotifyValidationChanged sender, String username, String message) {
-        boolean bMessageValid = validateMessage(message);
-        String messageMsg = getMessageValidationMessage(message);
-        sender.onValidationChanged(this, new ValidationChangedEventArgs("message", bMessageValid, messageMsg));
-        if(bMessageValid) {
+        String MessageValid = validateMessage(message);
+        sender.onValidationChanged(this, new ValidationChangedEventArgs("message", MessageValid == null, MessageValid));
+        if(MessageValid == null) {
+            System.out.println(message);
             Timestamp timestamp = new Timestamp(new java.util.Date().getTime());
             MessageRecord msg = new MessageRecord(username, message, timestamp);
             this.chatModel.sendMessage(msg);
