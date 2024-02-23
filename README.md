@@ -25,15 +25,15 @@ The project consists of two Java programs implementing a simple single-topic cha
 
 ### Classes
 
-- [ChatTabPageView](#link-to-javadocs)
-- [LoginTabPageView](#link-to-javadocs)
-- [SettingsTabPageView](#link-to-javadocs)
-- [Client](#link-to-javadocs)
-- [LoginController](#link-to-javadocs)
-- [MessageRecord](#link-to-javadocs)
-- [MessageParser](#link-to-javadocs)
-- [ClientHandler](#link-to-javadocs)
-- [Server](#link-to-javadocs)
+- [ChatTabPageView](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Views/TabPages/ChatTabPageView.html)
+- [LoginTabPageView](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Views/TabPages/LoginTabPageView.html)
+- [SettingsTabPageView](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Views/TabPages/SettingsTabPageView.html)
+- [Client](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Client.html)
+- [LoginController](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Controller/LoginController.html)
+- [MessageRecord](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Primitives/MessageRecord.html)
+- [MessageParser](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/MessageParser.html)
+- [ClientHandler](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/ClientHandler.html)
+- [Server](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Server.html)
 
 ## Submission Contents
 
