@@ -24,8 +24,6 @@ import java.util.ArrayList;
 public class Server {
 
     private ServerSocket serverSocket;
-    private final String _address = "localhost";
-    private final int _port = 1337;
     private static final String chatsDirectory = "chats/";
     private static final String chatsFile = "/chats.xml";
     private static final String chatsValidationFile = "/chats.xsd";
@@ -41,14 +39,39 @@ public class Server {
      * @throws IOException If an I/O error occurs while creating the server.
      */
     public static void main(String[] args) throws IOException {
-        Server server = new Server();
+        String _address = null;
+        int _port = -1;
+        if(args.length == 2) {
+            String tmpaddress = args[0];
+            _address = tmpaddress;
+            if(tmpaddress.length() <= 5) {
+                _address = "localhost";
+                System.out.println("Address must be 6 characters long at least. Using address 'localhost' instead.");
+            }
+            int tmpport = 0;
+            try {
+                Integer.parseInt(args[1]);
+            } catch (Exception e) {
+
+            }
+            _port = tmpport;
+            if(tmpport < 10 || tmpport == 80) {
+                _port = 1337;
+                System.out.println("Port can not be 80 and must be bigger than 9. Using 1337 as port instead.");
+            }
+        }
+        else {
+            _address = "localhost";
+            _port = 1337;
+        }
+        Server server = new Server(_address, _port);
         server.startServer();
     }
 
     /**
      * Constructs a Server object and initializes the server socket.
      */
-    public Server() {
+    public Server(String _address, int _port) {
         ServerSocket serverSocket = null;
         try {
             Inet4Address address = (Inet4Address) Inet4Address.getByName(_address);
