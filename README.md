@@ -29,7 +29,9 @@ The project consists of two Java programs implementing a simple single-topic cha
 - [LoginTabPageView](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Views/TabPages/LoginTabPageView.html)
 - [SettingsTabPageView](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Views/TabPages/SettingsTabPageView.html)
 - [Client](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Client.html)
+- [ChatController](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Controller/ChatController.html)
 - [LoginController](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Controller/LoginController.html)
+- [SettingsController](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Controller/SettingsController.html)
 - [MessageRecord](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/Primitives/MessageRecord.html)
 - [MessageParser](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/MessageParser.html)
 - [ClientHandler](https://github.com/swrcvendetta/middleware_assignment/blob/master/docs/ClientHandler.html)
@@ -58,4 +60,4 @@ If you have any questions or need further clarification, feel free to contact th
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [Creative Commons Attribution-NoDerivatives 4.0 International License](https://github.com/swrcvendetta/middleware_assignment/blob/master/LICENSE).

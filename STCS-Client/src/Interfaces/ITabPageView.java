@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2024 Christof Sobotta, Harz University of applied Sciences
+ * This work is licensed under the Creative Commons Attribution-NoDerivatives 4.0 International License.
+ * To view a copy of this license, visit http://creativecommons.org/licenses/by-nd/4.0/ or send a letter to
+ * Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+ */
+
 /**
  * The ITabPageView interface defines a contract for views that represent a tab page in a GUI application.
  * It includes methods to retrieve information about the tab page, such as its name, panel, icon, and tooltip.
