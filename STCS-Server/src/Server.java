@@ -11,6 +11,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+/**
+ * The Server class represents a chat server that accepts incoming client connections.
+ */
 public class Server {
 
     private ServerSocket serverSocket;
@@ -19,13 +22,25 @@ public class Server {
     private static final String chatsDirectory = "chats/";
     private static final String chatsFile = "/chats.xml";
     private static final String chatsValidationFile = "/chats.xsd";
+    /**
+     * Contains all received messages.
+     */
     public static ArrayList<MessageRecord> messages = new ArrayList<>();
 
+    /**
+     * The main method to start the chat server.
+     *
+     * @param args Command-line arguments (not used).
+     * @throws IOException If an I/O error occurs while creating the server.
+     */
     public static void main(String[] args) throws IOException {
         Server server = new Server();
         server.startServer();
     }
 
+    /**
+     * Constructs a Server object and initializes the server socket.
+     */
     public Server() {
         ServerSocket serverSocket = null;
         try {
@@ -38,12 +53,12 @@ public class Server {
         }
         this.serverSocket = serverSocket;
 
-        // Read messages
+        // When missing create directory and validation file
         MessageParser msgParser = new MessageParser();
         new File(chatsDirectory).mkdir();
         File chats = new File(chatsDirectory + chatsFile);
         File validation = new File(chatsDirectory + chatsValidationFile);
-        if(!validation.exists()) {
+        if (!validation.exists()) {
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(chatsDirectory + chatsValidationFile));
                 writer.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
@@ -69,8 +84,9 @@ public class Server {
                 throw new RuntimeException(e);
             }
         }
-        if(chats.exists()) {
-            if(msgParser.readFileFormat(chatsDirectory + chatsFile, chatsDirectory + chatsValidationFile)) {
+        // Read messages
+        if (chats.exists()) {
+            if (msgParser.readFileFormat(chatsDirectory + chatsFile, chatsDirectory + chatsValidationFile)) {
                 ArrayList<MessageRecord> messages = msgParser.parseAllObjects();
                 if (messages != null)
                     Server.messages = messages;
@@ -78,9 +94,12 @@ public class Server {
         }
     }
 
+    /**
+     * Starts the chat server and listens for incoming client connections.
+     */
     public void startServer() {
         try {
-            while(!serverSocket.isClosed()) {
+            while (!serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();
                 System.out.println("A new client has connected.");
                 ClientHandler clientHandler = new ClientHandler(socket);
@@ -88,16 +107,18 @@ public class Server {
                 Thread thread = new Thread(clientHandler);
                 thread.start();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             closeServerSocket();
         }
     }
 
+    /**
+     * Closes the server socket.
+     */
     public void closeServerSocket() {
         try {
-            if(serverSocket != null) {
+            if (serverSocket != null) {
                 serverSocket.close();
             }
         } catch (IOException e) {
@@ -105,12 +126,13 @@ public class Server {
         }
     }
 
+    /**
+     * Stores a new message in the chat log.
+     *
+     * @param message The message to store.
+     */
     public static void storeMessage(MessageRecord message) {
         MessageParser msgParser = new MessageParser();
-        /*
-        ArrayList<MessageRecord> messages = new ArrayList<>();
-        messages.add(message);
-        */
         try {
             msgParser.writeFileFormat(chatsDirectory + chatsFile, Server.messages);
         } catch (ParserConfigurationException e) {

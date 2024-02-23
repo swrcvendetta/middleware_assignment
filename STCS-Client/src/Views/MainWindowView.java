@@ -1,3 +1,7 @@
+/**
+ * The MainWindowView class represents the main window of the application.
+ * It extends ViewBase and contains tabs for settings, login, and chat views.
+ */
 package Views;
 
 import Controller.ChatController;
@@ -15,16 +19,43 @@ import Views.TabPages.SettingsTabPageView;
 import javax.swing.*;
 import java.net.Socket;
 
+/**
+ * The MainWindowView class provides the main window of the application with tabs for settings, login, and chat.
+ */
 public class MainWindowView extends ViewBase {
+
+    /**
+     * The base panel of the main window view.
+     */
     private JPanel basePanel;
+
+    /**
+     * The tabbed pane containing settings, login, and chat tabs.
+     */
     private JTabbedPane tabPanel;
+
+    /**
+     * The settings tab page view.
+     */
     private SettingsTabPageView settingsPage;
+
+    /**
+     * The login tab page view.
+     */
     private LoginTabPageView loginPage;
+
+    /**
+     * The chat tab page view.
+     */
     private ChatTabPageView chatPage;
 
+    /**
+     * Constructs a new instance of MainWindowView, initializing the frame and creating tabs.
+     */
     public MainWindowView() {
         super();
-        //this.viewModel = new MainWindowViewModel(this);
+
+        // Set the content pane and configure the frame
         this.setContentPane(this.basePanel);
         this.setTitle("MainWindowView");
         this.setSize(600, 400);
@@ -32,29 +63,38 @@ public class MainWindowView extends ViewBase {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
-        // Make settings-tab first, so we can use information on settings with our login-tab
+        // Create and configure settings, login, and chat tab pages
         SettingsModel settingsModel = new SettingsModel();
         SettingsController settingsController = new SettingsController(settingsModel);
         this.settingsPage = new SettingsTabPageView(settingsController);
+
         LoginModel loginModel = new LoginModel();
         LoginController loginController = new LoginController(loginModel, settingsModel);
         this.loginPage = new LoginTabPageView(loginController);
         settingsModel.subscribe(settingsPage);
-        //settingsModel.subscribe(loginPage);
         loginModel.subscribe(loginPage);
         loginModel.subscribe(this);
 
+        // Add login and settings tabs to the tab panel
         this.tabPanel.addTab(loginPage.getTabPageName(), loginPage.getTabPageIcon(), loginPage.getTabPagePanel(), loginPage.getTabPageTip());
         this.tabPanel.addTab(settingsPage.getTabPageName(), settingsPage.getTabPageIcon(), settingsPage.getTabPagePanel(), settingsPage.getTabPageTip());
     }
 
+    /**
+     * Handles property change events, such as when the connection status changes.
+     *
+     * @param sender The object that triggered the event.
+     * @param e      The PropertyChangedEventArgs containing information about the changed property.
+     */
     @Override
     public void onPropertyChanged(Object sender, PropertyChangedEventArgs e) {
         switch (e.getPropertyName()) {
             case "connected":
-                if(e.getPropertyValue() != null) {
+                if (e.getPropertyValue() != null) {
                     Socket socket = (Socket) (e.getPropertyValue());
                     String user = this.loginPage.getUsername();
+
+                    // Remove the login tab and add the chat tab
                     this.tabPanel.removeTabAt(0);
                     ChatModel chatModel = new ChatModel(user, socket);
                     ChatController chatController = new ChatController(chatModel);
@@ -69,8 +109,14 @@ public class MainWindowView extends ViewBase {
         }
     }
 
+    /**
+     * Handles validation change events.
+     *
+     * @param sender The object that triggered the event.
+     * @param e      The ValidationChangedEventArgs containing information about the validation change.
+     */
     @Override
     public void onValidationChanged(Object sender, ValidationChangedEventArgs e) {
-
+        // Handle validation change events if needed
     }
 }

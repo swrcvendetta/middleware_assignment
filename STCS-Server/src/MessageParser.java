@@ -27,16 +27,27 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * The MessageParser class provides functionality to read and write XML files containing MessageRecord objects.
+ * It supports reading files in a specific XML schema, parsing XML content, and writing MessageRecord objects to XML files.
+ */
 public class MessageParser {
     private NodeList list;
 
     /**
-     *
+     * Constructs a MessageParser object.
      */
     public MessageParser() {
 
     }
 
+    /**
+     * Reads an XML file with the specified source and validates it against a given XSD schema.
+     *
+     * @param source     The path to the XML file.
+     * @param validation The path to the XSD schema for validation. Pass null or an empty string to skip validation.
+     * @return True if the file is successfully read and validated, false otherwise.
+     */
     public boolean readFileFormat(String source, String validation) {
         if(source == null || source.isEmpty())
             return false;
@@ -78,9 +89,9 @@ public class MessageParser {
     }
 
     /**
-     * Returns an ArrayList of type 'MessageRecord'.
-     * @return MessageRecords.
-     * @see MessageRecord
+     * Parses all MessageRecord objects from the previously read XML file.
+     *
+     * @return An ArrayList containing all parsed MessageRecord objects.
      */
     public ArrayList<MessageRecord> parseAllObjects() {
         ArrayList<MessageRecord> messages = new ArrayList<>();
@@ -97,10 +108,10 @@ public class MessageParser {
     }
 
     /**
-     * Gets all data from element 'elem' and returns a 'MessageRecord' object.
-     * @param elem Element from DOM.
-     * @return Instance of 'MessageRecord'
-     * @see MessageRecord
+     * Parses MessageRecord data from an XML element.
+     *
+     * @param elem The XML element containing message data.
+     * @return A MessageRecord object with parsed data.
      */
     private MessageRecord parseAllData(Element elem) {
         String user = elem.getElementsByTagName("user").item(0).getTextContent();
@@ -125,11 +136,14 @@ public class MessageParser {
 
 
     // https://mkyong.com/java/how-to-create-xml-file-in-java-dom/
+
     /**
-     * Writes MessageRecord to XML file.
-     * @param source File path to an existing file.
-     * @param messages List of type 'MessageRecord'
-     * @return 0 when successful, 1 when failed
+     * Writes MessageRecord objects to an XML file in a specific format.
+     *
+     * @param source   The path to the output XML file.
+     * @param messages The list of MessageRecord objects to write to the file.
+     * @return True if the writing process is successful, false otherwise.
+     * @throws ParserConfigurationException If a DocumentBuilder cannot be created.
      */
     public boolean writeFileFormat(String source, ArrayList<MessageRecord> messages) throws ParserConfigurationException {
         if(source.isEmpty() || messages.isEmpty())
@@ -178,11 +192,11 @@ public class MessageParser {
     }
 
     /**
-     * Writes Data from Document to OutputStream
-     * @param doc Document
-     * @param output OutputStream
-     * @see Document
-     * @see OutputStream
+     * Writes an XML document to an output stream.
+     *
+     * @param doc    The Document object to write.
+     * @param output The OutputStream where the XML document is written.
+     * @throws TransformerException If an error occurs during the transformation process.
      */
     private static void writeXml(Document doc, OutputStream output) throws TransformerException {
 
@@ -200,10 +214,11 @@ public class MessageParser {
 
     // https://www.digitalocean.com/community/tutorials/how-to-validate-xml-against-xsd-in-java
     /**
-     * Validates an existing xml file against existing xsd file.
-     * @param xmlPath Path to xml file as String
-     * @param xsdPath Path to xsd file as String
-     * @return true if the xml is valid, else false
+     * Validates an XML file against an XSD schema.
+     *
+     * @param xmlPath The path to the XML file for validation.
+     * @param xsdPath The path to the XSD schema file.
+     * @return True if the XML file is valid according to the schema, false otherwise.
      */
     public static boolean validateXMLSchema(String xmlPath, String xsdPath) {
         try {
